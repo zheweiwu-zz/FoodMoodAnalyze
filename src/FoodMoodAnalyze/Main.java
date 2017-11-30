@@ -5,6 +5,8 @@
  */
 package FoodMoodAnalyze;
 
+import navigationcontroller.NavigationController;
+
 /**
  *
  * @author zheweiwu
@@ -16,6 +18,8 @@ public class Main {
      */
     public static void main(String[] args) {
         System.out.println("start app");
+        NavigationController navigationCntl = new NavigationController();
+        navigationCntl.launchMainMenuView();
     }
     
 }
