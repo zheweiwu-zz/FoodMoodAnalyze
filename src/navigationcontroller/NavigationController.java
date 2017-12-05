@@ -5,25 +5,60 @@
  */
 package navigationcontroller;
 
+import chartscontroller.ChartsController;
+import correlationscontroller.CorrelationsController;
+import historycontroller.HistoryController;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import mainmenuview.MainMenuView;
 
 /**
  *
  * @author nadaziab
  */
-public class NavigationController {
+public class NavigationController implements ActionListener {
     
     private MainMenuView mainMenuView;
+    private HistoryController historyController;
+    private CorrelationsController correlationsController;
+    private ChartsController chartsController;
     
     public NavigationController() {
-        
+        mainMenuView = new MainMenuView();
+        addListeners();
     }
     
-    public void launchMainMenuView() {
-        mainMenuView = new MainMenuView();
+    public void showMainMenu() {
+        mainMenuView.getFrame().setVisible(true);
     }
     
     public MainMenuView getMainMenuView() {
         return mainMenuView;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == mainMenuView.getHistoryBtn()) {
+            historyController = new HistoryController(this);
+            historyController.showHistoryView();
+            mainMenuView.getFrame().setVisible(false);
+        }
+        else if (e.getSource() == mainMenuView.getCorrelationsBtn()) {
+            correlationsController = new CorrelationsController(this);
+            correlationsController.showCorrelationsView();
+            mainMenuView.getFrame().setVisible(false);
+        }
+        else if (e.getSource() == mainMenuView.getChartsBtn()) {
+            chartsController = new ChartsController(this);
+            chartsController.showChartsView();
+            mainMenuView.getFrame().setVisible(false);
+        }
+        
+    }
+    
+    private void addListeners() {
+        mainMenuView.getHistoryBtn().addActionListener(this);
+        mainMenuView.getCorrelationsBtn().addActionListener(this);
+        mainMenuView.getChartsBtn().addActionListener(this);
     }
 }

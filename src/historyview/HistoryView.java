@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mainmenuview;
+package historyview;
 
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
@@ -14,20 +14,20 @@ import javax.swing.*;
  *
  * @author nadaziab
  */
-public class MainMenuView {
+public class HistoryView {
     
     private JFrame f;
     private JPanel p;
     
-    private JButton historyBtn, correlationsBtn, chartsBtn;
+    private JButton backBtn;
     
-    public MainMenuView() {
+    public HistoryView() {
         f = new JFrame();
         p = new JPanel();
         f.setLayout(new BorderLayout());
         p.setLayout(new GridBagLayout());
         
-        f.setTitle("FoodMood Analytics");
+        f.setTitle("FoodMood Analytics - History");
         f.setSize(500, 500);
         f.setLocationRelativeTo(null);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,36 +42,17 @@ public class MainMenuView {
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         
-        historyBtn = new JButton("Food/Mood History");
+        backBtn = new JButton("Back");
         c.gridx = 0;
         c.gridy = 0;
-        p.add(historyBtn, c);
-        
-        correlationsBtn = new JButton("Food/Mood Correlations");
-        c.gridx = 0;
-        c.gridy = 1;
-        p.add(correlationsBtn, c);
-        
-        chartsBtn = new JButton("Food/Mood Charts");
-        c.gridx = 0;
-        c.gridy = 2;
-        p.add(chartsBtn, c);
-        
-    }
-    
-    public JButton getHistoryBtn() {
-        return historyBtn;
-    }
-    
-    public JButton getCorrelationsBtn() {
-        return correlationsBtn;
-    }
-    
-    public JButton getChartsBtn() {
-        return chartsBtn;
+        p.add(backBtn, c);
     }
     
     public JFrame getFrame() {
         return f;
+    }
+    
+    public JButton getBackBtn() {
+        return backBtn;
     }
 }
