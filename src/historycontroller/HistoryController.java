@@ -9,6 +9,7 @@ import historyview.HistoryView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import navigationcontroller.NavigationController;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -36,5 +37,10 @@ public class HistoryController implements ActionListener {
             navigationController.showMainMenu();
             historyView.getFrame().dispose();
         }
+        else if (e.getSource() == historyView.getLoadBtn()){
+            System.out.println("Got Here");
+            historyView.rePaint();   
+        }
+        }
     }
-}
+
