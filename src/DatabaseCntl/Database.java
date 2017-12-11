@@ -50,6 +50,27 @@ public class Database {
         return password.equals(pw);
     }
     
+    public static int[] getCorrelations() throws ClassNotFoundException, SQLException {
+        Database db = getInstance();
+        int negative = 0;
+        int neutral = 0;
+        int positive = 0;
+        ResultSet results = db.getRows("SELECT * FROM moods WHERE username='"+Database.username+"'");
+        while (results.next()){
+            if (results.getString("mood").equals("1") || results.getString("mood").equals("2")) {
+                negative++;
+            }
+            if (results.getString("mood").equals("3")) {
+                neutral++;
+            }
+            if (results.getString("mood").equals("4") || results.getString("mood").equals("5")) {
+                positive++;
+            }
+        }
+        int[] A = {negative,neutral,positive};
+        return A;
+    }
+    
     public void insertSql(String sql) throws SQLException {
         statement.executeUpdate(sql);
     }
