@@ -20,7 +20,8 @@ public class ChartsController implements ActionListener {
     private NavigationController navigationController;
     
     public ChartsController(NavigationController nc) {
-        chartsView = new ChartsView();
+        // **** pass real data here
+        chartsView = new ChartsView(new int[3]);
         chartsView.getBackBtn().addActionListener(this);
         navigationController = nc;
     }

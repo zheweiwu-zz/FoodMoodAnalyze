@@ -35,7 +35,7 @@ public class MainMenuView {
         createComponents();
         
         f.add(p, BorderLayout.CENTER);
-        f.setVisible(false);
+        f.setVisible(true);
     }
     
     private void createComponents() {

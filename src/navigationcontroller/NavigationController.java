@@ -23,8 +23,11 @@ public class NavigationController implements ActionListener {
     private CorrelationsController correlationsController;
     private ChartsController chartsController;
     
-    public NavigationController() {
+    private String userID;
+    
+    public NavigationController(String userID) {
         mainMenuView = new MainMenuView();
+        this.userID = userID;
         addListeners();
     }
     

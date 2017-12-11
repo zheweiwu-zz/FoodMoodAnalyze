@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package DatabaseCntl;
-import com.google.gson.Gson.*;
-import com.google.gson.*;
+//import com.google.gson.Gson.*;
+//import com.google.gson.*;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -20,7 +20,7 @@ public class DatabaseRead {
     public static void readProfile(String username){
     
     
-    
+    /*
     String url = "https://foodmood-a4f9d.firebaseio.com/profiles/" + username + "/.json";
     try {
             URL urlConnect = new URL(url);
@@ -37,5 +37,6 @@ public class DatabaseRead {
         } catch (Exception e) {
             e.printStackTrace();
     }
+            */
     }
 }

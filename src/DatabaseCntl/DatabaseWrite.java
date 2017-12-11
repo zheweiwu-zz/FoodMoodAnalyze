@@ -5,8 +5,8 @@
  */
 package DatabaseCntl;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+//import com.google.gson.Gson;
+//import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -25,6 +25,7 @@ public class DatabaseWrite {
     
     public static void writeProfile(String username, Profile profile) throws IOException{
         
+    /*    
     try {
     
     URL urlConnection = null;
@@ -56,5 +57,6 @@ public class DatabaseWrite {
     catch(MalformedURLException e) {
             System.out.print("URL Malformed");
         }
+            */
 }
 }

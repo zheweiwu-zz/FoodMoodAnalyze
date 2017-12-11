@@ -5,6 +5,8 @@
  */
 package FoodMoodAnalyze;
 
+import logincontroller.LoginController;
+import loginview.LoginView;
 import navigationcontroller.NavigationController;
 
 /**
@@ -18,8 +20,8 @@ public class Main {
      */
     public static void main(String[] args) {
         System.out.println("start app");
-        NavigationController navigationCntl = new NavigationController();
-        navigationCntl.showMainMenu();
+        LoginView loginView = new LoginView();
+        LoginController loginCntl = new LoginController(loginView);
     }
     
 }
