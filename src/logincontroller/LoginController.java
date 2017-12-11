@@ -5,6 +5,7 @@
  */
 package logincontroller;
 
+import DatabaseCntl.Database;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -30,29 +31,18 @@ public class LoginController implements ActionListener {
        
        if (ae.getSource()==lv.loginBtn) {
            
-           // if authenticated
-           String userID = lv.getUsername();
-           NavigationController nc = new NavigationController(userID);
-           nc.showMainMenu();
-           lv.getF().dispose();
+           try {
+               // if authenticated
+               if (Database.authProfile(lv.getUsername(), lv.getPassword())) {
+                   String userID = lv.getUsername();
+                   NavigationController nc = new NavigationController(userID);
+                   nc.showMainMenu();
+                   lv.getF().dispose();
+               }
+           } catch (ClassNotFoundException | SQLException ex) {
+               Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+           }
            
-           /*
-            try {
-                if (!lv.getUsername().equals("") && !lv.getPassword().equals("") && Database.authProfile(lv.getUsername(), lv.getPassword())) {
-                    MainMenuView mmv = new MainMenuView();
-                    String userID = lv.getUsername(); // get userid of person with username
-                    NavigationController nc = new NavigationController(mmv, new FoodList(), new MoodList(), userID);
-                    lv.getF().dispose();
-                }
-                else {
-                    System.out.println("Error authenticating");
-                }
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-           */
         }
        
     }
