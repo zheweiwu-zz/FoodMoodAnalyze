@@ -23,6 +23,7 @@ public class HistoryController implements ActionListener {
     public HistoryController(NavigationController nc) {
         historyView = new HistoryView();
         historyView.getBackBtn().addActionListener(this);
+        historyView.getLoadBtn().addActionListener(this);
         navigationController = nc;
         
     }
@@ -38,8 +39,7 @@ public class HistoryController implements ActionListener {
             historyView.getFrame().dispose();
         }
         else if (e.getSource() == historyView.getLoadBtn()){
-            System.out.println("Got Here");
-            historyView.rePaint();   
+            historyView.rePaint();  
         }
         }
     }

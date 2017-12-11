@@ -8,7 +8,11 @@ package correlationsview;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -19,7 +23,12 @@ public class CorrelationsView {
     private JFrame f;
     private JPanel p;
     
-    private JButton backBtn;
+    private final String[] correlationTypesArray = {"All Correlations", "Negative Correlations", "Neutral Correlations", "Positive Correlations"};
+    private JComboBox correlationTypes;
+    
+    private JTable table;
+    
+    private JButton changeBtn, backBtn;
     
     public CorrelationsView() {
         f = new JFrame();
@@ -34,13 +43,37 @@ public class CorrelationsView {
   
         createComponents();
         
-        f.add(p, BorderLayout.CENTER);
+        f.add(p, BorderLayout.NORTH);
         f.setVisible(false);
     }
     
     private void createComponents() {
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
+        
+        correlationTypes = new JComboBox(correlationTypesArray);
+        c.gridx = 0;
+        c.gridy = 0;
+        c.gridwidth = 3;
+        p.add(correlationTypes);
+        
+        
+        String[][] data = {{"Apple", "4", "Positive"}};
+        String[] column = {"FOOD", "MOOD RATING", "CORRELATION"};
+        
+        table = new JTable(data, column);
+        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
+        table.setRowSorter(sorter);
+        
+        ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
+        sortKeys.add(new RowSorter.SortKey(4, SortOrder.ASCENDING));
+        sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+        sorter.setSortKeys(sortKeys);
+        
+        JScrollPane pane = new JScrollPane(table);
+        f.add(pane);
+        
+        
         
         backBtn = new JButton("Back");
         c.gridx = 0;

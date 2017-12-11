@@ -47,7 +47,7 @@ public class HistoryView {
   
         createComponents();
         
-        f.add(p, BorderLayout.CENTER);
+        f.add(p, BorderLayout.SOUTH);
         f.setVisible(false);
     }
     
@@ -65,7 +65,7 @@ public class HistoryView {
         
         c.gridx = 0;
         c.gridy = 0;
-        p.add(table, c);
+        f.add(table, BorderLayout.CENTER);
         
         c.gridx = 0;
         c.gridy = 1;
@@ -84,6 +84,9 @@ public class HistoryView {
         return f;
     }
     public void rePaint(){
+        f.remove(table);
+        f.revalidate();
+        f.repaint();
         this.setTable(getType());
         SwingUtilities.updateComponentTreeUI(f);
     }
@@ -102,9 +105,11 @@ public class HistoryView {
     {
         if (type.equals("Food")){
             table = new JTable(foodTableData, labelsFood);
+            f.add(table, BorderLayout.CENTER);
         }
         else {
             table = new JTable(moodTableData, labelsMood);
+            f.add(table, BorderLayout.CENTER);
         }
     }
 }
