@@ -20,6 +20,8 @@ public class HistoryView {
     public final JFrame f;
     private final JPanel p;
     
+    private JScrollPane pane;
+    
     private JButton backBtn;
     private JButton loadBtn;
     private JComboBox typeSelect;
@@ -62,11 +64,6 @@ public class HistoryView {
         typeSelect.setSelectedIndex(1);
         setTable(this.getType());
         
-        
-        c.gridx = 0;
-        c.gridy = 0;
-        f.add(table, BorderLayout.CENTER);
-        
         c.gridx = 0;
         c.gridy = 1;
         p.add(typeSelect, c);
@@ -85,6 +82,7 @@ public class HistoryView {
     }
     public void rePaint(){
         f.remove(table);
+        f.remove(pane);
         f.revalidate();
         f.repaint();
         this.setTable(getType());
@@ -105,11 +103,13 @@ public class HistoryView {
     {
         if (type.equals("Food")){
             table = new JTable(foodTableData, labelsFood);
-            f.add(table, BorderLayout.CENTER);
+            pane = new JScrollPane(table);
+            f.add(pane, BorderLayout.CENTER);
         }
         else {
             table = new JTable(moodTableData, labelsMood);
-            f.add(table, BorderLayout.CENTER);
+            pane = new JScrollPane(table);
+            f.add(pane, BorderLayout.CENTER);
         }
     }
 }

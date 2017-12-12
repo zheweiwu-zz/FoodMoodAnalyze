@@ -48,17 +48,17 @@ public class ChartsView {
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         
-        negativeBtn = new JButton("Negative Correlations");
+        negativeBtn = new JButton("Negative Foods");
         c.gridx = 0;
         c.gridy = 0;
         p.add(negativeBtn, c);
         
-        neutralBtn = new JButton("Neutral Correlations");
+        neutralBtn = new JButton("Neutral Foods");
         c.gridx = 1;
         c.gridy = 0;
         p.add(neutralBtn, c);
         
-        positiveBtn = new JButton("Positive Correlations");
+        positiveBtn = new JButton("Positive Foods");
         c.gridx = 2;
         c.gridy = 0;
         p.add(positiveBtn, c);
@@ -79,5 +79,29 @@ public class ChartsView {
     
     public JButton getBackBtn() {
         return backBtn;
+    }
+    
+    public JButton getNegativeBtn() {
+        return negativeBtn;
+    }
+    
+    public JButton getNeutralBtn() {
+        return neutralBtn;
+    }
+    
+    public JButton getPositiveBtn() {
+        return positiveBtn;
+    }
+    public void showFoods(String a)
+    {
+    if (a.equals("neg")){
+    JOptionPane.showMessageDialog(f, "Nagative foods");
+    }
+    else if (a.equals("net")){
+    JOptionPane.showMessageDialog(f, "neutral foods");
+    }
+    else if (a.equals("pos")){
+    JOptionPane.showMessageDialog(f, "Pos foods");
+    }
     }
 }

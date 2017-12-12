@@ -22,16 +22,9 @@ public class ChartPanel extends JPanel {
     private String[] names; 
     private String title;
     
-    public ChartPanel(int[] data) {
-        //values = v;
-        //names = n;
-        //title = t;
-        
-        // *** test data ***
-        this.data = new int[3];
-        this.data[0] = 5;
-        this.data[1] = 3;
-        this.data[2] = 4;
+    public ChartPanel(int[] d) {
+
+        data = d;
         
         names = new String[3];
         names[0] = "Negative";
@@ -55,7 +48,7 @@ public class ChartPanel extends JPanel {
             if (min > data[i])
                 min = data[i];
             if (max < data[i])
-                max = data[i];
+                max = data[i] + 1;
         }
 
         Dimension dimension = getSize();
