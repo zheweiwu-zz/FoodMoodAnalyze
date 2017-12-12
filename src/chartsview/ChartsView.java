@@ -108,7 +108,11 @@ public class ChartsView {
     //System.out.print(Database.getAssociatedFood()[2]);
     }
     }
+    
     private static String removeLastChar(String str) {
+        if (str.length() > 0){
     return str.substring(0, str.length() - 1);
+        }
+        else{ return str;}
 }
 }
