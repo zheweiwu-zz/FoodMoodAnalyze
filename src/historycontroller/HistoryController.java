@@ -52,7 +52,7 @@ public class HistoryController implements ActionListener {
                     object[j][1] = mood.getDateTime().format(DateTimeFormatter.ISO_LOCAL_DATE);
                     object[j][2] = mood.getDateTime().format(DateTimeFormatter.ISO_LOCAL_TIME);
                     
-                    i++;
+                    j++;
                 }       
                 
         historyView = new HistoryView(object, object2);
