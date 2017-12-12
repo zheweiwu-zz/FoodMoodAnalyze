@@ -1,10 +1,14 @@
 package DatabaseCntl;
 
+import FoodModel.FoodModel;
+import MoodModel.MoodModel;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /*
@@ -102,6 +106,30 @@ public class Database {
         }
         String [] A = {negative, neutral, positive};
         return A;
+    }
+    
+    public static ArrayList<FoodModel> getFoods() throws ClassNotFoundException, SQLException {
+        ArrayList<FoodModel> foods = new ArrayList<>();
+        Database db = getInstance();
+        ResultSet results = db.getRows("SELECT * FROM foods WHERE userid='" + Database.username + "'");
+        while (results.next()) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+            LocalDateTime dateTime = LocalDateTime.parse(results.getString("datetime"), formatter);
+            foods.add(new FoodModel(results.getString("food"), dateTime, results.getString("id")));
+        }
+        return foods;
+    }
+    
+    public static ArrayList<MoodModel> getMoods() throws ClassNotFoundException, SQLException {
+        Database db = getInstance();
+        ResultSet results = db.getRows("SELECT * FROM moods WHERE userid='" + Database.username + "'");
+        ArrayList<MoodModel> moods = new ArrayList<>();
+        while (results.next()) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+            LocalDateTime dateTime = LocalDateTime.parse(results.getString("datetime"), formatter);
+            moods.add(new MoodModel(Integer.parseInt(results.getString("rating")), dateTime, results.getString("id")));
+        }
+        return moods;
     }
     
     public void insertSql(String sql) throws SQLException {
