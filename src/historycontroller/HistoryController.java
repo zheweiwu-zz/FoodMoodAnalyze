@@ -22,8 +22,8 @@ public class HistoryController implements ActionListener {
     
     public HistoryController(NavigationController nc) {
         // needs 2 seperate methods to get all foods and moods
-        
-        historyView = new HistoryView();
+        //Object [][] foods = Database.getfoodsorsomething()
+        historyView = new HistoryView(null, null);
         historyView.getBackBtn().addActionListener(this);
         historyView.getLoadBtn().addActionListener(this);
         navigationController = nc;
