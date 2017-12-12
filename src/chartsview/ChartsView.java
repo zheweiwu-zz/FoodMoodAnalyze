@@ -97,15 +97,18 @@ public class ChartsView {
     }
     public void showFoods(String a) throws SQLException, ClassNotFoundException
     {
-    if (a.equals("neg")){
-    JOptionPane.showMessageDialog(f, Database.getAssociatedFood()[0]);
+    if (a.equals("neg")){          
+    JOptionPane.showMessageDialog(f, removeLastChar(Database.getAssociatedFood()[0]));
     }
     else if (a.equals("net")){
-    JOptionPane.showMessageDialog(f, Database.getAssociatedFood()[1]);
+    JOptionPane.showMessageDialog(f, removeLastChar(Database.getAssociatedFood()[1]));
     }
     else if (a.equals("pos")){
-    JOptionPane.showMessageDialog(f, Database.getAssociatedFood()[2]);
+    JOptionPane.showMessageDialog(f, removeLastChar(Database.getAssociatedFood()[2]));
     //System.out.print(Database.getAssociatedFood()[2]);
     }
     }
+    private static String removeLastChar(String str) {
+    return str.substring(0, str.length() - 1);
+}
 }
