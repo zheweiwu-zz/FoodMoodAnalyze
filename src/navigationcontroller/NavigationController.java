@@ -10,6 +10,9 @@ import correlationscontroller.CorrelationsController;
 import historycontroller.HistoryController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import mainmenuview.MainMenuView;
 
 /**
@@ -42,7 +45,11 @@ public class NavigationController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == mainMenuView.getHistoryBtn()) {
-            historyController = new HistoryController(this);
+            try {
+                historyController = new HistoryController(this);
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(NavigationController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             historyController.showHistoryView();
             mainMenuView.getFrame().setVisible(false);
         }
@@ -52,7 +59,11 @@ public class NavigationController implements ActionListener {
             mainMenuView.getFrame().setVisible(false);
         }
         else if (e.getSource() == mainMenuView.getChartsBtn()) {
-            chartsController = new ChartsController(this);
+            try {
+                chartsController = new ChartsController(this);
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(NavigationController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             chartsController.showChartsView();
             mainMenuView.getFrame().setVisible(false);
         }

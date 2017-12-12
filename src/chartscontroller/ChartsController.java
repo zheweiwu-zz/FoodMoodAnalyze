@@ -10,6 +10,8 @@ import chartsview.ChartsView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import navigationcontroller.NavigationController;
 import javax.swing.JOptionPane;
 
@@ -44,13 +46,25 @@ public class ChartsController implements ActionListener {
         }
     
         else if (e.getSource() == chartsView.getNegativeBtn()){
-            chartsView.showFoods("neg");
+            try {
+                chartsView.showFoods("neg");
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(ChartsController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else if (e.getSource() == chartsView.getNeutralBtn()){ 
-            chartsView.showFoods("net");
+            try {
+                chartsView.showFoods("net");
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(ChartsController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else if (e.getSource() == chartsView.getPositiveBtn()){ 
-            chartsView.showFoods("pos");
+            try {
+                chartsView.showFoods("pos");
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(ChartsController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }
