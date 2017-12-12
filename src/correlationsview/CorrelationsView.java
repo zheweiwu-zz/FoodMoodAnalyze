@@ -56,8 +56,6 @@ public class CorrelationsView {
         c.fill = GridBagConstraints.BOTH;
         
         
-        int dataNum = 0;
-        
         ArrayList<String> negEntries = new ArrayList();
         ArrayList<String> neutEntries = new ArrayList();
         ArrayList<String> posEntries = new ArrayList();
@@ -76,7 +74,7 @@ public class CorrelationsView {
         
         String neutralCorrelations = correlations[1];
         
-        if (!neutralCorrelations.equals("")) {
+        if (neutralCorrelations != null) {
             String[] neutCorrData = neutralCorrelations.split(",");
             for (int i = 0; i < neutCorrData.length; i++) {
                 neutEntries.add(neutCorrData[i]);
@@ -86,7 +84,7 @@ public class CorrelationsView {
         
         String positiveCorrelations = correlations[2];
         
-        if (!positiveCorrelations.equals("")) {
+        if (positiveCorrelations != null) {
             String[] posCorrData = positiveCorrelations.split(",");
             for (int i = 0; i < posCorrData.length; i++) {
                 posEntries.add(posCorrData[i]);
