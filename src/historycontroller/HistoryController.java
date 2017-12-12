@@ -33,7 +33,7 @@ public class HistoryController implements ActionListener {
          foods = Database.getFoods();
          moods = Database.getMoods();
          
-         Object[][] object = new Object[100][100];
+         Object[][] object = new Object[foods.size()][3];
          int i = 0;
             if (foods.size() != 0) {
                 for (FoodModel food : foods) {
@@ -44,7 +44,7 @@ public class HistoryController implements ActionListener {
                     i++;
                 }
                 
-         Object[][] object2 = new Object[100][100];
+         Object[][] object2 = new Object[moods.size()][3];
          int j = 0;
             if (moods.size() != 0) {
                 for (MoodModel mood : moods) {

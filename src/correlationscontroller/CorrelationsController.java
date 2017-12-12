@@ -5,9 +5,11 @@
  */
 package correlationscontroller;
 
+import DatabaseCntl.Database;
 import correlationsview.CorrelationsView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import navigationcontroller.NavigationController;
 
 /**
@@ -19,8 +21,8 @@ public class CorrelationsController implements ActionListener {
     CorrelationsView correlationsView;
     private NavigationController navigationController;
     
-    public CorrelationsController(NavigationController nc) {
-        correlationsView = new CorrelationsView();
+    public CorrelationsController(NavigationController nc) throws SQLException, ClassNotFoundException {
+        correlationsView = new CorrelationsView(Database.getAssociatedFood());
         correlationsView.getBackBtn().addActionListener(this);
         navigationController = nc;
     }

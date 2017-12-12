@@ -106,11 +106,13 @@ public class HistoryView {
     {
         if (type.equals("Food")){
             table = new JTable(foodTableData, labelsFood);
+            table.setAutoCreateRowSorter(true);
             pane = new JScrollPane(table);
             f.add(pane, BorderLayout.CENTER);
         }
         else {
             table = new JTable(moodTableData, labelsMood);
+            table.setAutoCreateRowSorter(true);
             pane = new JScrollPane(table);
             f.add(pane, BorderLayout.CENTER);
         }

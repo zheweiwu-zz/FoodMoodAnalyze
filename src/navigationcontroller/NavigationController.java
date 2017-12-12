@@ -54,7 +54,13 @@ public class NavigationController implements ActionListener {
             mainMenuView.getFrame().setVisible(false);
         }
         else if (e.getSource() == mainMenuView.getCorrelationsBtn()) {
-            correlationsController = new CorrelationsController(this);
+            try {
+                correlationsController = new CorrelationsController(this);
+            } catch (SQLException ex) {
+                Logger.getLogger(NavigationController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(NavigationController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             correlationsController.showCorrelationsView();
             mainMenuView.getFrame().setVisible(false);
         }

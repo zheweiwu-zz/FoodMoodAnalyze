@@ -30,7 +30,9 @@ public class CorrelationsView {
     
     private JButton changeBtn, backBtn;
     
-    public CorrelationsView() {
+    private String[] correlations;
+    
+    public CorrelationsView(String[] c) {
         f = new JFrame();
         p = new JPanel();
         f.setLayout(new BorderLayout());
@@ -41,6 +43,8 @@ public class CorrelationsView {
         f.setLocationRelativeTo(null);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   
+        correlations = c;
+        
         createComponents();
         
         f.add(p, BorderLayout.SOUTH);
@@ -51,8 +55,61 @@ public class CorrelationsView {
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         
-        String[][] data = {{"Apple", "4", "Positive"}, {"Banana", "3", "Neutral"}, {"Pear", "1", "Negative"}};
-        String[] column = {"FOOD", "MOOD RATING", "CORRELATION"};
+        
+        int dataNum = 0;
+        
+        ArrayList<String> negEntries = new ArrayList();
+        ArrayList<String> neutEntries = new ArrayList();
+        ArrayList<String> posEntries = new ArrayList();
+        ArrayList<String> allEntries = new ArrayList();
+                
+        
+        String negativeCorrelations = correlations[0];
+        
+        if (negativeCorrelations != null) {
+            String[] negCorrData = negativeCorrelations.split(",");
+            for (int i = 0; i < negCorrData.length; i++) {
+                negEntries.add(negCorrData[i]);
+                allEntries.add(negCorrData[i]);
+            }
+       }
+        
+        String neutralCorrelations = correlations[1];
+        
+        if (!neutralCorrelations.equals("")) {
+            String[] neutCorrData = neutralCorrelations.split(",");
+            for (int i = 0; i < neutCorrData.length; i++) {
+                neutEntries.add(neutCorrData[i]);
+                allEntries.add(neutCorrData[i]);
+            }
+        }
+        
+        String positiveCorrelations = correlations[2];
+        
+        if (!positiveCorrelations.equals("")) {
+            String[] posCorrData = positiveCorrelations.split(",");
+            for (int i = 0; i < posCorrData.length; i++) {
+                posEntries.add(posCorrData[i]);
+                allEntries.add(posCorrData[i]);
+            }
+        }
+        
+        Object[][] data = new Object[allEntries.size()][2];
+        
+        for (int i = 0; i < allEntries.size(); i++) {
+            data[i][0] = allEntries.get(i);
+            if (i < negEntries.size()) {
+                data[i][1] = "Negative";
+            }
+            else if (i >= negEntries.size() && i < (negEntries.size() + posEntries.size())) {
+                data[i][1] = "Neutral";
+            }
+            else if (i >= (negEntries.size() + neutEntries.size())) {
+                data[i][1] = "Positive";
+            }
+        }
+
+        String[] column = {"Food", "Correlation"};
         
         table = new JTable(data, column);
         table.setAutoCreateRowSorter(true);
