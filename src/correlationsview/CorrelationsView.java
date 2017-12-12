@@ -43,7 +43,7 @@ public class CorrelationsView {
   
         createComponents();
         
-        f.add(p, BorderLayout.NORTH);
+        f.add(p, BorderLayout.SOUTH);
         f.setVisible(false);
     }
     
@@ -51,24 +51,11 @@ public class CorrelationsView {
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         
-        correlationTypes = new JComboBox(correlationTypesArray);
-        c.gridx = 0;
-        c.gridy = 0;
-        c.gridwidth = 3;
-        p.add(correlationTypes);
-        
-        
-        String[][] data = {{"Apple", "4", "Positive"}};
+        String[][] data = {{"Apple", "4", "Positive"}, {"Banana", "3", "Neutral"}, {"Pear", "1", "Negative"}};
         String[] column = {"FOOD", "MOOD RATING", "CORRELATION"};
         
         table = new JTable(data, column);
-        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
-        table.setRowSorter(sorter);
-        
-        ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
-        sortKeys.add(new RowSorter.SortKey(4, SortOrder.ASCENDING));
-        sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
-        sorter.setSortKeys(sortKeys);
+        table.setAutoCreateRowSorter(true);
         
         JScrollPane pane = new JScrollPane(table);
         f.add(pane);
