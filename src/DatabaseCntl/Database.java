@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -71,6 +72,38 @@ public class Database {
         return A;
     }
     
+    public static String[] getAssociatedFood() throws SQLException, ClassNotFoundException {
+        Database db = getInstance();
+        String negative = null;
+        String neutral = null;
+        String positive = null;
+        ResultSet results = db.getRows("SELECT * FROM moods WHERE userid='"+Database.username+"'");
+        ArrayList<String> ratings = new ArrayList<>();
+        ArrayList<String> ids = new ArrayList<>();
+        while (results.next()){
+            ratings.add(results.getString("rating"));
+            ids.add(results.getString("id"));
+        }
+        for (int i = 0; i<ids.size(); i++) {
+            ResultSet food = db.getRows("SELECT * from foods where id = '"+ids.get(i)+"'");
+            String foodName = null;
+            while (food.next()) {
+               foodName = food.getString("food");
+            }
+            if (ratings.get(i).equals("1") || ratings.get(i).equals("2")) {
+                negative = foodName + ",";
+            }
+            if (ratings.get(i).equals("3")) {
+                neutral = foodName + ",";
+            }
+            if (ratings.get(i).equals("4") || ratings.get(i).equals("5")) {
+                positive = foodName + ",";
+            }
+        }
+        String [] A = {negative, neutral, positive};
+        return A;
+    }
+    
     public void insertSql(String sql) throws SQLException {
         statement.executeUpdate(sql);
     }
@@ -82,6 +115,6 @@ public class Database {
     
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         Database.username = "zhewei";
-        System.out.println(Database.getCorrelations()[0]+","+Database.getCorrelations()[1]+","+Database.getCorrelations()[2]);
+        System.out.println(Database.getAssociatedFood()[2]);
     }
 }
