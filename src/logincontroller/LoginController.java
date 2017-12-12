@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import loginview.LoginView;
 import navigationcontroller.NavigationController;
 
@@ -38,6 +39,9 @@ public class LoginController implements ActionListener {
                    NavigationController nc = new NavigationController(userID);
                    nc.showMainMenu();
                    lv.getF().dispose();
+               }
+               else {
+                   JOptionPane.showMessageDialog(lv.getF(), "The password combination is not correct.");
                }
            } catch (ClassNotFoundException | SQLException ex) {
                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
