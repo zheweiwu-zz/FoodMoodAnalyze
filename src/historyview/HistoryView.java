@@ -29,12 +29,15 @@ public class HistoryView {
     private final String[] labelsFood;
     private final String[] labelsMood;
     private final String [] type = {"Food", "Mood"};
-    public Object [][] foodTableData = {{"Apple", "9/25", "11"}, {"Doughnut", "9/26", "12"}};
-    public Object [][] moodTableData = {{"Sad", "12/10", "11"},{"Happy", "12/11", "1"}};
+    public Object [][] foodTableData;
+    public Object [][] moodTableData;
     
-    public HistoryView() {
+    public HistoryView(Object [][] foodArr, Object [][] moodArr) {                               // neeeds arrays for food and mood seperate
         this.labelsFood = new String[]{"Food", "Date", "Time"};
         this.labelsMood = new String[]{"Mood", "Date", "Time"};
+        
+        foodTableData = foodArr;
+        moodTableData = moodArr;
     
         f = new JFrame();
         p = new JPanel();

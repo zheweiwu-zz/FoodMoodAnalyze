@@ -5,9 +5,12 @@
  */
 package chartsview;
 
+import DatabaseCntl.Database;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.sql.SQLException;
+import java.util.Arrays;
 import javafx.embed.swing.JFXPanel;
 import javax.swing.*;
 
@@ -92,16 +95,17 @@ public class ChartsView {
     public JButton getPositiveBtn() {
         return positiveBtn;
     }
-    public void showFoods(String a)
+    public void showFoods(String a) throws SQLException, ClassNotFoundException
     {
     if (a.equals("neg")){
-    JOptionPane.showMessageDialog(f, "Nagative foods");
+    JOptionPane.showMessageDialog(f, Database.getAssociatedFood()[0]);
     }
     else if (a.equals("net")){
-    JOptionPane.showMessageDialog(f, "neutral foods");
+    JOptionPane.showMessageDialog(f, Database.getAssociatedFood()[1]);
     }
     else if (a.equals("pos")){
-    JOptionPane.showMessageDialog(f, "Pos foods");
+    JOptionPane.showMessageDialog(f, Database.getAssociatedFood()[2]);
+    //System.out.print(Database.getAssociatedFood()[2]);
     }
     }
 }
