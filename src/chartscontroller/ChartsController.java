@@ -5,9 +5,11 @@
  */
 package chartscontroller;
 
+import DatabaseCntl.Database;
 import chartsview.ChartsView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import navigationcontroller.NavigationController;
 
 /**
@@ -19,9 +21,9 @@ public class ChartsController implements ActionListener {
     private ChartsView chartsView;
     private NavigationController navigationController;
     
-    public ChartsController(NavigationController nc) {
+    public ChartsController(NavigationController nc) throws ClassNotFoundException, SQLException {
         // **** pass real data here
-        chartsView = new ChartsView(new int[3]);
+        chartsView = new ChartsView(Database.getCorrelations());
         chartsView.getBackBtn().addActionListener(this);
         navigationController = nc;
     }

@@ -22,16 +22,17 @@ public class ChartPanel extends JPanel {
     private String[] names; 
     private String title;
     
-    public ChartPanel(int[] data) {
+    public ChartPanel(int[] d) {
         //values = v;
         //names = n;
         //title = t;
+        data = d;
         
-        // *** test data ***
-        this.data = new int[3];
-        this.data[0] = 5;
-        this.data[1] = 3;
-        this.data[2] = 4;
+//        // *** test data ***
+//        this.data = new int[3];
+//        this.data[0] = 5;
+//        this.data[1] = 3;
+//        this.data[2] = 4;
         
         names = new String[3];
         names[0] = "Negative";
