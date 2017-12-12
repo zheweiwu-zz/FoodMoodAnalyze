@@ -110,7 +110,7 @@ public class HistoryView {
             pane = new JScrollPane(table);
             f.add(pane, BorderLayout.CENTER);
         }
-        else {
+        else if (type.equals("Mood")){
             table = new JTable(moodTableData, labelsMood);
             table.setAutoCreateRowSorter(true);
             pane = new JScrollPane(table);

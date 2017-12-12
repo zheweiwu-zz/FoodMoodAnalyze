@@ -43,26 +43,28 @@ public class HistoryController implements ActionListener {
                     
                     i++;
                 }
+            }
                 
          Object[][] object2 = new Object[moods.size()][3];
          int j = 0;
             if (moods.size() != 0) {
                 for (MoodModel mood : moods) {
-                    object[j][0] = mood.getMoodRating();
-                    object[j][1] = mood.getDateTime().format(DateTimeFormatter.ISO_LOCAL_DATE);
-                    object[j][2] = mood.getDateTime().format(DateTimeFormatter.ISO_LOCAL_TIME);
+                    object2[j][0] = mood.getMoodRating();
+                    object2[j][1] = mood.getDateTime().format(DateTimeFormatter.ISO_LOCAL_DATE);
+                    object2[j][2] = mood.getDateTime().format(DateTimeFormatter.ISO_LOCAL_TIME);
                     
                     j++;
                 }       
-                
+            }
+            
         historyView = new HistoryView(object, object2);
         historyView.getBackBtn().addActionListener(this);
         historyView.getLoadBtn().addActionListener(this);
         navigationController = nc;
         
-    }
+    
             }
-    }
+    
     
     public void showHistoryView() {
         historyView.getFrame().setVisible(true);
